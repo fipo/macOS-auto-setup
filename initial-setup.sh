@@ -3,9 +3,9 @@ cat << EOS
 macOS Auto Setup - Initial
 EOS
 
-read -sp "Your Password: " password; 
+read -sp "Your Password: " password;
 
-echo "=== add brew ==="
+echo "=== add Xcode Command Line Tools ==="
 sudo xcodebuild -license accept
 sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
 echo "=== done ==="
