@@ -6,19 +6,14 @@ EOS
 read -sp "Your Password: " password;
 
 echo "=== add Xcode Command Line Tools ==="
-sudo xcodebuild -license accept
-sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+xcode-select --install
+sudo xcode-select --switch /Library/Developer/CommandLineTools
 echo "=== done ==="
 
 echo "=== add brew ==="
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew update
 brew -v
-echo "=== done ==="
-
-echo "=== add brew:coreutils  ==="
-brew install coreutils
-export PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/bin:$PATH"
 echo "=== done ==="
 
 echo "=== add brew:git ==="
@@ -51,7 +46,7 @@ brew install tmux
 echo "=== done ==="
 
 echo "=== add brew:yarn ==="
-brew install yarn
+brew install yarn --without-node
 echo "=== done ==="
 
 echo "=== add brew:mongodb ==="
@@ -71,19 +66,20 @@ echo "=== done ==="
 echo "=== add nvm ==="
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
 source $HOME/.zshrc
+for file in ~/.z*; do source $file; done
 command -v nvm
 echo "=== done ==="
 
 echo "=== add node --lts ==="
 nvm install --lts
-nvm list
+nvm use --lts
 echo "=== done ==="
 
 while true; do
   read -p 'Install Node Apps? [Y/n]' Answer
   case $Answer in
     '' | [Yy]* )
-      $(cd $(dirname ${BASH_SOURCE:-$0}); pwd)/node-apps.sh
+      curl -L https://raw.githubusercontent.com/fipo/macOS-auto-setup/master/node-apps.sh | /bin/bash
       break;
       ;;
     [Nn]* )
@@ -100,7 +96,7 @@ while true; do
   read -p 'Install Cask Apps? [Y/n]' Answer
   case $Answer in
     '' | [Yy]* )
-      $(cd $(dirname ${BASH_SOURCE:-$0}); pwd)/cask-apps.sh
+      curl -L https://raw.githubusercontent.com/fipo/macOS-auto-setup/master/cask-apps.sh | /bin/bash
       break;
       ;;
     [Nn]* )
