@@ -5,11 +5,6 @@ EOS
 
 read -sp "Your Password: " password;
 
-echo "=== add Xcode Command Line Tools ==="
-xcode-select --install
-sudo xcode-select --switch /Library/Developer/CommandLineTools
-echo "=== done ==="
-
 echo "=== add brew ==="
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew update
