@@ -21,7 +21,7 @@ mkdir -p $HOME/.ssh && touch $HOME/.ssh/known_hosts
 ssh-keyscan -H github.com >> ~/.ssh/known_hosts
 git clone --bare https://github.com/fipo/dotfiles.git $HOME/.cfg
 $(which git) --git-dir=$HOME/.cfg/ --work-tree=$HOME checkout
-$(which git) --git-dir=$HOME/.cfg/ --work-tree=$HOME set-url origin git@github.com:fipo/dotfiles.git
+$(which git) --git-dir=$HOME/.cfg/ --work-tree=$HOME remote set-url origin git@github.com:fipo/dotfiles.git
 echo "=== done ==="
 
 echo "=== add prezto ==="
